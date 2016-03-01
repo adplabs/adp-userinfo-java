@@ -8,7 +8,7 @@ There are two ways of installing and using this library:
   - Maven dependency: When you are ready to use the library in your own application use this method to add as Maven dependency
 
 ### Version
-1.0.0
+Beta 
 
 ### Installation
 
@@ -195,6 +195,7 @@ file://{HOME}/workspace/ADPUserInfo/doc/index.html
 
 Additional documentation can also be found on the [ADP Developer Portal](https://developers.adp.com).
 
+
 ## Tests
 Automated unit tests are available in the src/main/test folder.  
 
@@ -229,9 +230,8 @@ ADPUserInfo library depends on the following libraries.
 
 To contribute to the library, please generate a pull request.  Before generating the pull request, please insure the following:
 
-1. Appropriate unit tests have been updated or created on all public methods validating the success flows, error, exception conditions. In addition,
-   verify and validate logic inside protected/private methods through tests written for public methods
-2. Code coverage on unit tests must be no less than 80%
+1. Appropriate unit tests have been updated or created on all public methods validating the success flows, error, exception conditions. 
+   In  addition, verify and validate logic inside protected/private methods through tests written for public methods
 2. Your code updates have been fully tested and compiled with no errors.
 3. Update README and API documentation as appropriate.
 
