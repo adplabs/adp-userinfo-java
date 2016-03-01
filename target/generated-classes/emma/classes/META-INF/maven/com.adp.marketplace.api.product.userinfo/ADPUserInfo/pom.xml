@@ -1,0 +1,278 @@
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	Copyright © 2015-2016 ADP, LLC.   
+	
+	Licensed under the Apache License, Version 2.0 (the “License”); 
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing, software 
+	distributed under the License is distributed on an “AS IS” BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
+	implied. See the License for the specific language governing permissions 
+	and limitations under the License.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+  	<modelVersion>4.0.0</modelVersion>
+  	<groupId>com.adp.marketplace.api.product.userinfo</groupId>
+  	<artifactId>ADPUserInfo</artifactId>
+  	<version>1.0.0</version>
+  	
+  	<name>ADPUserInfo</name>
+  	<url>https://github.com/adplabs/adp-userinfo-java.git</url>
+  	<description>ADP API Product - User Info</description>
+	
+	<organization>
+	    <name>ADP LLC</name>
+	    <url>http://www.adp.com/partners/adp-marketplace.aspx</url>
+	</organization>
+	
+	<inceptionYear>2016</inceptionYear>
+	
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>tallaprs</id>
+			<name>Ambika Tallapragada</name>
+			<email>ambika.tallapragada-contractor@adp.com</email>
+			<url></url>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+
+	<distributionManagement>
+    	<repository>
+      		<!-- <id>ADP-repository</id> -->
+      		<!-- <name>ADP Marketplace Release Distribution Repository</name> -->
+      		<!-- <url>https://repository.adp.com/repository/maven2</url> -->
+    	</repository>
+ 		<!-- 
+    	<site>
+      		<id>ADP Website</id>
+      		<name>ADP API Documentation Website</name>
+      		<url></url>
+    	</site>	-->
+  	</distributionManagement>
+
+	<issueManagement>
+		<system>Zendesk</system>
+		<url>https://partnersupport.adp.com</url>
+	</issueManagement>
+	
+	<repositories>
+	   <!-- ADP Github repository details --> 
+	   	<repository>
+	      <snapshots>
+	        <enabled>false</enabled>
+	      </snapshots>
+	      <id>ADP Central Repo</id>
+	      <name>ADP Central Repository</name>
+	      <url>https://github.com/adplabs/adp-userinfo-java</url>
+	    </repository>
+	</repositories>
+	
+	<properties>
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    	
+    	<maven.compiler.source>1.6</maven.compiler.source>
+    	<maven.compiler.target>1.6</maven.compiler.target>
+    	<maven.compiler.optimize>true</maven.compiler.optimize>
+    	
+    	<maven.javadoc.version>2.10.3</maven.javadoc.version>
+    	<maven.surefire.version>2.10</maven.surefire.version>
+    
+    	<com.adp.marketplace.connection-version>1.0.0</com.adp.marketplace.connection-version>
+    	<com.adp.marketplace.api.product.userinfo-version>1.0.0</com.adp.marketplace.api.product.userinfo-version>
+    	
+	    <commons-logging-version>1.2</commons-logging-version>
+	   	<org.apache.commons-version>3.4</org.apache.commons-version>
+	   	<org.apache.httpcomponents-version>4.5.1</org.apache.httpcomponents-version>
+	   	<org.apache.httpcomponents-httpcore-osgi-version>4.4.4</org.apache.httpcomponents-httpcore-osgi-version>
+	   	<com.googlecode.json-simple-version>1.1.1</com.googlecode.json-simple-version>
+	   	<com.google.code.gson-version>2.3.1</com.google.code.gson-version>	
+	   	<junit-version>4.12</junit-version>
+	   	<org.slf4j-version>1.7.14</org.slf4j-version>
+	</properties>
+	
+  	<build>
+  	
+  		<finalName>${project.artifactId}-${project.version}</finalName>
+    
+		<!-- path -->
+		<directory>${basedir}/target</directory>
+    	<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+    	<testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+    	<outputDirectory>${basedir}/target/classes</outputDirectory>
+    	<testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
+    	<scriptSourceDirectory>${basedir}/src/main/scripts</scriptSourceDirectory>
+    
+        <plugins>
+        
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>emma-maven-plugin</artifactId>
+                <version>1.0-alpha-3</version>
+                <inherited>true</inherited>
+                <!-- <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>emma</goal>
+                        </goals>
+                    </execution>
+                </executions> -->
+            </plugin>
+            
+        </plugins>
+        
+        <resources>
+      		<resource>
+      			<!-- <targetPath></targetPath> -->
+	        	<filtering>false</filtering>
+	        	<directory>${basedir}/src/main/resources/certs</directory>
+	        	<includes>
+	          		<include>ADPInternalChain.der</include>
+	          		<include>iat.key</include>
+	          		<include>iat.pem</include>
+	          		<include>keystore.jks</include>
+	        	</includes>
+	        	<excludes>
+	          		<exclude>${basedir}/src/main/resources/certs/iat.jks</exclude>
+	          		<exclude>${basedir}/src/main/resources/certs/SSL.jks</exclude>
+	        	</excludes>
+      		</resource>
+      		<resource>
+	        	<filtering>false</filtering>
+	        	<directory>${basedir}/src/main/resources</directory>
+	        	<includes>
+	          		<include>${basedir}/src/main/resources/clientConfig.properties</include>
+	        	</includes>
+	        	<excludes>
+	          		<exclude></exclude>
+	          		<exclude>${basedir}/src/main/resources/clientConfig-IAT.properties</exclude>
+	          		<exclude>${basedir}/src/main/resources/clientConfig-PROD.properties</exclude>
+	        	</excludes>
+      		</resource>
+    	</resources>
+    	
+    </build>
+    
+	<reporting>
+		<!-- ADP specific maven javadoc and maven generated site documentation path -->
+    	<outputDirectory>${basedir}/doc</outputDirectory>
+    	<!-- default maven documentation site
+    	<outputDirectory>${basedir}/target/site</outputDirectory>
+    	 -->
+    	 
+    	 <!-- ADP specific javadoc documentation  -->
+		<plugins>
+      		<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-javadoc-plugin</artifactId>
+		        <version>${maven.javadoc.version}</version>
+		        <configuration>
+		          <stylesheetfile>${basedir}/doc/stylesheet.css</stylesheetfile>
+		          <show>public</show>
+		        </configuration>
+      		</plugin>
+    	</plugins>
+    	 
+	</reporting>
+	
+	<dependencies>
+  
+  		<!-- ADP Connection-->
+		<dependency>
+			<groupId>com.adp.marketplace.connection</groupId>
+  			<artifactId>ADPConnection</artifactId>
+  			<version>${com.adp.marketplace.connection-version}</version>
+  		</dependency>
+   
+   		<!-- commons logging 1.2 -->
+	    <dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>${commons-logging-version}</version>
+		</dependency>
+		
+  		<!-- commons-lang3-3.4 -->
+	    <dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${org.apache.commons-version}</version>
+		</dependency>
+		
+		<!-- httpclient - 4.5.1 -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${org.apache.httpcomponents-version}</version>
+		</dependency>
+		
+		<!-- httpcore-osgi - 4.4.4 -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore-osgi</artifactId>
+			<version>${org.apache.httpcomponents-httpcore-osgi-version}</version>
+		</dependency>
+
+	    <!-- jar - gson -2.3.1 -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${com.google.code.gson-version}</version>
+		</dependency>
+		
+		<!-- json-simple 1.1.1 -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>${com.googlecode.json-simple-version}</version>
+		</dependency>
+		
+		<!-- junit-4.12 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
+			<scope>test</scope>			
+		</dependency>
+		
+		<!-- slf4j 1.7.14 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j-version}</version>
+		</dependency>
+
+  </dependencies>
+ 
+</project>

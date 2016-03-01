@@ -1,0 +1,3 @@
+com/adp/marketplace/product/userinfo/utils/UserInfoUtils.class
+com/adp/marketplace/product/userinfo/core/UserInfoHelper.class
+com/adp/marketplace/product/userinfo/exception/APIException.class
