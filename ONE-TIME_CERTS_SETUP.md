@@ -116,7 +116,7 @@ Trust this certificate? [no]:
 Type 'yes' 
    
   
-##8  Verify that the root certificate has been imported by searching on alias given in step 7.
+## 8.  Verify that the root certificate has been imported by searching on alias given in step 7
 
 Example:
 
