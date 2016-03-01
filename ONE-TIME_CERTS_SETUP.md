@@ -1,19 +1,3 @@
-## ---------------------------------------------------------------------------------------------------------------
-##		Copyright © 2015-2016 ADP, LLC.   
-##	
-##		Licensed under the Apache License, Version 2.0 (the “License”); 
-##		you may not use this file except in compliance with the License.
-##		You may obtain a copy of the License at
-##	
-##		http://www.apache.org/licenses/LICENSE-2.0
-##	
-##		Unless required by applicable law or agreed to in writing, software 
-##		distributed under the License is distributed on an “AS IS” BASIS,
-##		WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
-##  	See the License for the specific language governing permissions and 
-##  	limitations under the License.
-## ---------------------------------------------------------------------------------------------------------------
-
 ## One Time Setup: to run the Sample Applications bundled in ADP Libraries
 
 Steps for creating new JKS or using existing JKS and Importing ADPInternal Certificates to cacerts 
@@ -51,12 +35,14 @@ Look in /src/main/resources folders of ADPLibraries or ADP Samples for below two
    
 Ex: Copy contents of apiclient_iat.key to apiclient_key.pem
  
+
 ## 2. Generate .pkcs12 file from provided pem and key files using openssl command
 
 Ex: Given apiclient_iat.pem and apiclient_iat_key.pem generate keystore.pkcs12
  
 $ openssl pkcs12 -export -out keystore.pkcs12 -in apiclient_iat.pem -inkey apiclient_iat_key.pem
  
+
 ## 3. Generate .jks file from .pkcs12 created in Step 2 using keytool utility
  
 Ex: Given keystore.pkcs12 generate keystore.jks 
@@ -69,6 +55,7 @@ Note: if prompted for password use 'adpadp10' without single quotes
  
 $ keytool -importkeystore -srckeystore keystore.pkcs12 -srcstoretype PKCS12 -deststoretype JKS -destkeystore  keystore.jks
   
+
 ## 4. To view available certificates from a keystore of type JKS run below command with the keystore password    
    (adpadp10) or use the password that was provided in Step 3
    
@@ -102,9 +89,11 @@ Verify that the below block is present along with a listing of Extensions
  
 $ openssl x509 -in ADPInternalChain.pem -inform pem -out ADPInternalChain.der -outform der
  	
+
 ## 6. Validate the root certificate 
    
 $ keytool -v -printcert -file ADPInternalChain.der
+
 
 ## 7. Import the root certificate into the JVM Trust Store (cacerts) using keytool utility
  
