@@ -84,7 +84,7 @@ Invoke getUserInfo() on UserInfoHelper to obtain UserInfo
     AuthorizationCodeConfiguration authorizationCodeConfiguration = new AuthorizationCodeConfiguration();
 				
 	// get authorization code configuration properties 
-	Properties properties = CLIENT_UTILS_INSTANCE..getInstance().getConfigProperties();
+	Properties properties = CLIENT_UTILS_INSTANCE.getInstance().getConfigProperties();
 
 	// populate authorization code configuration 
 	CLIENT_UTILS_INSTANCE.mapPropertiesToAuthCodeConfiguration(properties,  authorizationCodeConfiguration);
