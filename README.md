@@ -84,20 +84,19 @@ Invoke getUserInfo() on UserInfoHelper to obtain UserInfo
     AuthorizationCodeConfiguration authorizationCodeConfiguration = new AuthorizationCodeConfiguration();
 				
 	// get authorization code configuration properties 
-	Properties properties = com.adp.marketplace.demo.client.auth.authcode.utils.ClientUtils.getInstance().getConfigProperties();
+	Properties properties = CLIENT_UTILS_INSTANCE..getInstance().getConfigProperties();
 
 	// populate authorization code configuration 
-	com.adp.marketplace.demo.client.auth.authcode.utils.ClientUtils.getInstance()
-		.mapPropertiesToAuthCodeConfiguration(properties,  authorizationCodeConfiguration);
+	CLIENT_UTILS_INSTANCE.mapPropertiesToAuthCodeConfiguration(properties,  authorizationCodeConfiguration);
 				
 	// get ADP connection using configuration above
-	authorizationCodeConnection = (AuthorizationCodeConnection) ADPAPIConnectionFactory.getInstance().
-		createConnection(authorizationCodeConfiguration); 			
+	authorizationCodeConnection = (AuthorizationCodeConnection) 
+			CONNECTION_FACTORY_INSTANCE.createConnection(authorizationCodeConfiguration); 			
 		
 	// get Url from authorization connection
 	authorizationUrl = "redirect:" + authorizationCodeConnection.getAuthorizationUrl();
 
-	// callback snippets
+	// callback code snippet
 	String requestCode = (String) request.getParameter("code");
 	String callBackRequestError = (String) request.getParameter("error");
 	
@@ -110,7 +109,8 @@ Invoke getUserInfo() on UserInfoHelper to obtain UserInfo
 	// at this time this connection must have token info
 	Token token = authorizationCodeConnection.getToken();
 
-	// alternate flow - no token in connection 
+	// alternate flow - no token in connection
+	errorMessage =  authorizationCodeConnection.getErrorResponse();
 
 ### Get User Info ###
 	   
