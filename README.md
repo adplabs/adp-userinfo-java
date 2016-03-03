@@ -8,7 +8,7 @@ There are two ways of installing and using this library:
   - Maven dependency: When you are ready to use the library in your own application use this method to add as Maven dependency
 
 ### Version
-Beta 
+1.0.0-Beta 
 
 ### Installation
 
