@@ -22,7 +22,7 @@
   	<modelVersion>4.0.0</modelVersion>
   	<groupId>com.adp.marketplace.api.product.userinfo</groupId>
   	<artifactId>ADPUserInfo</artifactId>
-  	<version>1.0.0</version>
+  	<version>0.0.1-Beta</version>
   	
   	<name>ADPUserInfo</name>
   	<url>https://github.com/adplabs/adp-userinfo-java.git</url>

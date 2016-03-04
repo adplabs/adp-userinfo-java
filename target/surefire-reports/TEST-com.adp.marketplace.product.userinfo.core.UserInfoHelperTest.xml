@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="com.adp.marketplace.product.userinfo.core.UserInfoHelperTest" time="0.066" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="com.adp.marketplace.product.userinfo.core.UserInfoHelperTest" time="0.057" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib"/>
@@ -26,7 +26,7 @@
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="classworlds.conf" value="/Users/tallaprs/Documents/Mars/workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf1472293041933129640.tmp"/>
+    <property name="classworlds.conf" value="/Users/tallaprs/Documents/Mars/workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf928187621429750625.tmp"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/tallaprs/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -62,7 +62,7 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16|adp.com|*.adp.com|adpcorp.com|*.adpcorp.com"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.adp.marketplace.product.userinfo.core.UserInfoHelperTest" name="constructUserInfoHelperWithAuthCodeConnection" time="0.014"/>
+  <testcase classname="com.adp.marketplace.product.userinfo.core.UserInfoHelperTest" name="constructUserInfoHelperWithAuthCodeConnection" time="0.012"/>
   <testcase classname="com.adp.marketplace.product.userinfo.core.UserInfoHelperTest" name="ClientCredentialsConnectionUnimplemented" time="0"/>
   <testcase classname="com.adp.marketplace.product.userinfo.core.UserInfoHelperTest" name="constructUserInfoHelperWithClientCredentials" time="0"/>
   <testcase classname="com.adp.marketplace.product.userinfo.core.UserInfoHelperTest" name="AuthorizationCodeConnectionIsNotAlive" time="0"/>
