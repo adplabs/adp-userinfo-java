@@ -63,20 +63,29 @@
 		<url>https://github.com/adplabs/adp-userinfo-java/issues</url>
 		<system>ADPUserInfo Library GitHub Issues</system>
 	</issueManagement>
-
-	<distributionManagement>
-    	<repository>
-      		<!-- <id>ADP-repository</id> -->
-      		<!-- <name>ADP Marketplace Release Distribution Repository</name> -->
-      		<!-- <url>https://repository.adp.com/repository/maven2</url> -->
-    	</repository>
- 		<!-- 
-    	<site>
-      		<id>ADP Website</id>
-      		<name>ADP API Documentation Website</name>
-      		<url></url>
-    	</site>	-->
-  	</distributionManagement>
+    
+    <distributionManagement>
+        <repository>
+            <!-- <id>ADP-repository</id> -->
+            <!-- <name>ADP Marketplace Release Distribution Repository</name> -->
+            <!-- <url>https://repository.adp.com/repository/maven2</url> -->
+            
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        
+        <!-- 
+        <site>
+            <id>ADP Website</id>
+            <name>ADP API Documentation Website</name>
+            <url></url>
+        </site> -->
+        
+      <snapshotRepository>
+        <id>ossrh</id>
+        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      </snapshotRepository>
+    </distributionManagement>
 	
 	<repositories>
 	   <!-- ADP Github repository details --> 
@@ -126,38 +135,6 @@
     	<testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
     	<scriptSourceDirectory>${basedir}/src/main/scripts</scriptSourceDirectory>
     
-        <plugins>
-        
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.surefire.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>emma-maven-plugin</artifactId>
-                <version>1.0-alpha-3</version>
-                <inherited>true</inherited>
-                <!-- <executions>
-                    <execution>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>emma</goal>
-                        </goals>
-                    </execution>
-                </executions> -->
-            </plugin>
-            
-        </plugins>
         
         <resources>
       		<resource>
@@ -189,6 +166,125 @@
       		</resource>
     	</resources>
     	
+        <plugins>
+        
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.version}</version>
+                <configuration>
+                  <show>private</show>
+                  <nohelp>true</nohelp>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.version}</version>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>emma-maven-plugin</artifactId>
+                <version>1.0-alpha-3</version>
+                <inherited>true</inherited>
+                <!-- <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>emma</goal>
+                        </goals>
+                    </execution>
+                </executions> -->
+            </plugin>
+            
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-release-plugin</artifactId>
+              <version>2.5</version>
+              <configuration>
+                <autoVersionSubmodules>true</autoVersionSubmodules>
+                <useReleaseProfile>false</useReleaseProfile>
+                <releaseProfiles>release</releaseProfiles>
+                <goals>deploy</goals>
+              </configuration>
+            </plugin>
+
+            <!--  for gpg signing -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-gpg-plugin</artifactId>
+              <version>1.5</version>
+              <executions>
+                <execution>
+                  <id>sign-artifacts</id>
+                  <phase>verify</phase>
+                  <goals>
+                    <goal>sign</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+            
+            <plugin>
+              <groupId>org.sonatype.plugins</groupId>
+              <artifactId>nexus-staging-maven-plugin</artifactId>
+              <version>1.6.3</version>
+              <extensions>true</extensions>
+              <configuration>
+                <serverId>ossrh</serverId>
+                <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                <autoReleaseAfterClose>true</autoReleaseAfterClose>
+              </configuration>
+            </plugin>
+            
+        </plugins>
+        
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
+        
     </build>
     
 	<reporting>
