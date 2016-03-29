@@ -177,24 +177,25 @@ public class UserInfoHelper  {
 	private StringBuilder processAPIResponse(CloseableHttpResponse response) throws IOException, APIException {
 		
 		StringBuilder stringBuilder = null;
+		int value = -1;
 		
 		try {
 			
 			if ( response != null ) {
 				
-				String line = "";
 				stringBuilder = new StringBuilder();
 				
 				InputStreamReader inputStreamReader = new InputStreamReader(response.getEntity().getContent());
 				BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-				
-				while ( (line = bufferedReader.readLine()) != null ) {
-					stringBuilder.append(line);
-				}			
-			}
-			
+								
+				// reads to the end of the stream 
+		         while((value = bufferedReader.read()) != -1) {		        	 
+		            // add character
+		        	 stringBuilder.append((char)value);
+		         }				
+			}			
 		} catch (IOException e) {
-			throw new APIException(e.getMessage());
+			throw new APIException("Error: Unable to get API response.");
 		} finally {
 			if ( response != null ) {
 				response.close();
