@@ -32,6 +32,7 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 
 import com.adp.marketplace.connection.configuration.AuthorizationCodeConfiguration;
+import com.adp.marketplace.connection.constants.Constants;
 import com.adp.marketplace.connection.core.ADPAPIConnection;
 import com.adp.marketplace.connection.core.AuthorizationCodeConnection;
 import com.adp.marketplace.connection.core.ClientCredentialsConnection;
@@ -122,6 +123,7 @@ public class UserInfoHelper  {
 									
 				//create a GET request to retrieve data 
 				HttpGet getRequest = new HttpGet();
+				getRequest.addHeader("User-Agent", Constants.USERINFO_USER_AGENT);
 					
 				List<NameValuePair> nameValuePairs = UserInfoUtils.getInstance().getNameValuePairs((AuthorizationCodeConnection)connection);
 					
