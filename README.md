@@ -1,3 +1,10 @@
+## ADP Marketplace Partners
+
+There are a few pre-requesites that you need to fullfill in order to use this library:
+- Replace the certifcates in this library with the ones you recieved from the [CSR Tool](https://apps.adp.com/apps/165104)
+- Update the client id and client secret with the ones supplied in your credentials document PDF
+- Update endpoints from ```https://iat-api.adp.com``` and ```https://iat-accounts.adp.com``` to  ```https://api.adp.com``` and ```https://accounts.adp.com```.
+
 ## ADP User Info Library for Java
 
 The ADP Client UserInfo Library is intended to simplify and aid the process of retrieving UserInfo from the ADP Marketplace API Gateway. The Library includes a sample application that can be run out-of-the-box to connect to the ADP Marketplace API test gateway.
@@ -24,16 +31,16 @@ $ cd adp-userinfo-java
 
 $ mvn clean install -e
 
-## Do a one time setup for client certificates 
- 
-NOTE: 
+## Do a one time setup for client certificates
+
+NOTE:
 
 Certificates bundled in libraries will only work for ADP Sandbox environment
 
 Refer ONE-TIME_CERTS_SETUP.md for jks key generation and cacerts import instructions
 
 ## Usage
-### Library Organization 
+### Library Organization
 ADPConnection library follows standard maven project structure
 
 
@@ -42,7 +49,7 @@ To integrate ADPConnection library to your Client Applications add ADPConnection
 
 Client Applications that use these libraries would have to acquire certificates from ADP by submitting CSR signing request.
 
-NOTE: 
+NOTE:
 Certificates bundled in libraries will only work for ADP Sandbox environment
 
 Refer ONE-TIME_CERTS_SETUP.md for jks key generation and how to import to cacerts instructions
@@ -56,7 +63,7 @@ Create Connection with initialized configuration
 
 Invoke connect() on Connection to acquire a connection based on configuration
 
-Invoke getAccessToken() on Connection to obtain Access Token 
+Invoke getAccessToken() on Connection to obtain Access Token
 
 Invoke getErrorResponse() on Connection to obtain error details in case Access Token is not returned
 
@@ -68,7 +75,7 @@ Create AuthorizationCodeConnection Connection with initialized configuration
 
 Invoke connect() on Connection to get Access Token from authorizationCodeConnection
 
-Invoke getAccessToken() on Connection to obtain Access Token 
+Invoke getAccessToken() on Connection to obtain Access Token
 
 Invoke getErrorResponse() on Connection to obtain error details in case Access Token is not returned
 
@@ -76,36 +83,36 @@ Invoke getErrorResponse() on Connection to obtain error details in case Access T
 
 Create a UserInfoHelper object initialized with AuthorizationCode Connection
 
-Invoke getUserInfo() on UserInfoHelper to obtain UserInfo      
-          
+Invoke getUserInfo() on UserInfoHelper to obtain UserInfo
+
 ### Create Authorization Code Connection###
-     
-    // create authorization code configuration object    
+
+    // create authorization code configuration object
     AuthorizationCodeConfiguration authorizationCodeConfiguration = new AuthorizationCodeConfiguration();
-				
-	// get authorization code configuration properties 
+
+	// get authorization code configuration properties
 	Properties properties = CLIENT_UTILS_INSTANCE.getInstance().getConfigProperties();
 
-	// populate authorization code configuration 
+	// populate authorization code configuration
 	CLIENT_UTILS_INSTANCE.mapPropertiesToAuthCodeConfiguration(properties,  authorizationCodeConfiguration);
-				
+
 	// get ADP connection using configuration above
-	authorizationCodeConnection = (AuthorizationCodeConnection) 
-			CONNECTION_FACTORY_INSTANCE.createConnection(authorizationCodeConfiguration); 			
-		
+	authorizationCodeConnection = (AuthorizationCodeConnection)
+			CONNECTION_FACTORY_INSTANCE.createConnection(authorizationCodeConfiguration);
+
 	// get Url from authorization connection
 	authorizationUrl = "redirect:" + authorizationCodeConnection.getAuthorizationUrl();
 
 	// callback code snippet
 	String requestCode = (String) request.getParameter("code");
 	String callBackRequestError = (String) request.getParameter("error");
-	
-	AuthorizationCodeConfiguration config = ((AuthorizationCodeConfiguration) 
+
+	AuthorizationCodeConfiguration config = ((AuthorizationCodeConfiguration)
 	authorizationCodeConnection.getConnectionConfiguration());
 
 	// call to ADPConnection Library
 	authorizationCodeConnection.connect();
-					
+
 	// at this time this connection must have token info
 	Token token = authorizationCodeConnection.getToken();
 
@@ -113,29 +120,29 @@ Invoke getUserInfo() on UserInfoHelper to obtain UserInfo
 	errorMessage =  authorizationCodeConnection.getErrorResponse();
 
 ### Get User Info ###
-	   
-	 // create a new UserInfoHelper using the current connection 
+
+	 // create a new UserInfoHelper using the current connection
 	 UserInfoHelper userInfoHelper = new UserInfoHelper(authorizationCodeConnection);
-	
-	 // retrieve user info using the current connection 
+
+	 // retrieve user info using the current connection
 	 userInfoResponse = userInfoHelper.getUserInfo();
 
 ## Sample Client
 
 A sample client is provided to demonstrate usage of the libraries. The sample client connects to a sandbox environment hosted by ADP, and comes pre-configured with the necessary credentials and certificates to connect to the sandbox server.
 
-AuthCodeUserInfoSampleApp - Web Application - Web application that uses ADPUserInfo library, ADPConnection library to obtain a connection based on grant type Authorization Code 
-                                           
+AuthCodeUserInfoSampleApp - Web Application - Web application that uses ADPUserInfo library, ADPConnection library to obtain a connection based on grant type Authorization Code
+
 ## Client Setup
 
 Find folder /client in the adp-connection-java library
 
 Copy the client sample(s) to {Home}/workspace/
 
-$ cp adp-userinfo-java/client/AuthCodeUserInfoSampleApp.zip .	
- 
+$ cp adp-userinfo-java/client/AuthCodeUserInfoSampleApp.zip .
+
 Unzip the sample application(s) in {Home}/workspace/ so that sample applications can be run as individual module
- 	
+
 $ tar -xvzf AuthCodeUserInfoSampleApp.zip
 
 Finally, Import the sample application(s) to Eclipse to run the client application
@@ -150,7 +157,7 @@ Documentation on the individual API calls
 Library Documentation
 
 file://{HOME}/workspace/ADPUserInfo/doc/index.html
-  
+
 To generate the documentation, please complete the following steps:
 
 ### Generate Docs Eclipse Editor
@@ -159,7 +166,7 @@ Select ADPUserInfoLibrary
 
 Select Project from menu bar and click **Generate Javadoc**
 
-A pop up window opens with few options 
+A pop up window opens with few options
 
 **Configure JavaDoc Command** to point to your machines JAVA_HOME/Contents/Home/bin/javadoc
 
@@ -167,9 +174,9 @@ Ex:	/Library/Java/JavaVirtualMachines/${java_version.jdk}/Contents/Home/bin/java
 
 **Create Javadoc with members with visibility** Select public
 
-**Use standard Doculet** Destination {HOME}/workspace/ADPConnection/doc	
+**Use standard Doculet** Destination {HOME}/workspace/ADPConnection/doc
 
-Check 'Document title' checkbox 
+Check 'Document title' checkbox
 
 Click Next **Provide Document Title** 'ADPUserInfo API Docs'
 
@@ -177,17 +184,17 @@ Click Next **Provide Document Title** 'ADPUserInfo API Docs'
 
 Click Next
 
-**Configure Javadoc arguments** 
+**Configure Javadoc arguments**
 
 Check Overview -> Browse to point to {HOME}/adp-userinfo-java/doc/index.html
 
-Verify JRE source compatibility 
+Verify JRE source compatibility
 
 Check Open generated index file in browser
 
 Click Finish
 
-Java Doc successfully generated in {HOME}/workspace/ADPUserInfo/doc	
+Java Doc successfully generated in {HOME}/workspace/ADPUserInfo/doc
 
 **View Java Docs in a browser**
 
@@ -197,13 +204,13 @@ Additional documentation can also be found on the [ADP Developer Portal](https:/
 
 
 ## Tests
-Automated unit tests are available in the src/main/test folder.  
+Automated unit tests are available in the src/main/test folder.
 
 $ mvn test
 
-### Eclipse 
+### Eclipse
 
-Right Click on pom.xml 
+Right Click on pom.xml
 
 Select Run As -> Maven Test
 
@@ -230,7 +237,7 @@ ADPUserInfo library depends on the following libraries.
 
 To contribute to the library, please generate a pull request.  Before generating the pull request, please insure the following:
 
-1. Appropriate unit tests have been updated or created on all public methods validating the success flows, error, exception conditions. 
+1. Appropriate unit tests have been updated or created on all public methods validating the success flows, error, exception conditions.
    In  addition, verify and validate logic inside protected/private methods through tests written for public methods
 2. Your code updates have been fully tested and compiled with no errors.
 3. Update README and API documentation as appropriate.
